@@ -1,0 +1,7 @@
+.DS_Store
+application/config/config.php
+application/config/database.php
+application/config/twitter.php
+tmp/**.png
+.hg/*
+.hgignore

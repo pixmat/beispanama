@@ -1,0 +1,18 @@
+body{background:#e3e3e3 url(../images/bg.jpg) repeat top left;margin:50px 0 0 50px;color:#39444a}
+a:link, a:visited, a:active{color:#202122}
+	a:hover{color:#1a83bc}
+small{font-size:80%;}
+
+/* Header */
+h1{background:transparent url(../images/logo.png) no-repeat;width:438px;height:92px;overflow:hidden}
+	h1 span{display:none;}
+
+/* Content */
+div#content{background:#fefefe;width:100%;-moz-box-shadow:#B2B2B2 7px 3px 6px;;-webkit-box-shadow:#B2B2B2 7px 3px 6px;;box-shadow:#B2B2B2 7px 3px 6px;}
+	div#content > div{padding:20px}
+
+div#avatarSelector{width:73px;height:73px;margin:0 0 20px;padding:0;position:relative;overflow:hidden;border:4px solid #B2B2B2}
+	div#avatarSelector img.logoEquipo{position:absolute;bottom:0;left:0;margin:0;padding:0}
+
+/* Footer */
+div#footer{font-size:90%;margin-top:30px}
