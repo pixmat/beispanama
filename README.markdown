@@ -7,6 +7,15 @@ Esta es una aplicaci&oacute;n que utiliza el API OAuth de Twitter para obtener l
 
 C&oacute;digo hecho por Dem&oacute;stenes Garc&iacute;a ([demogar](http://www.demogar.com)) como simple pr&aacute;ctica del uso de la librer&iacute;a tmhOAuth, hecha por themattharris. Utiliza el framework CodeIgniter para su propio funcionamiento. Ambas licencias (para CodeIgniter y para tmhOAuth) est&aacute;n a&ntilde;adidas en el c&oacute;digo.
 
+## Tecnolog&iacute;as usadas
+
+Esta aplicación fue hecha utilizando:
+* CodeIgniter (PHP Framework)
+* jQuery (Librería JavaScript)
+* HTML
+* CSS
+* La librería tmhOAuth de themattharris + varias modificaciones hechas por mi
+
 ## Licencia
 
 Todo el c&oacute;digo propio est&aacute; bajo la licencia [WTFPL](http://sam.zoy.org/wtfpl/) (Do What The Fuck You Want To Public License). Hagan lo que quieran con el c&oacute;digo, preferiblemente aprender algo (si es posible).
