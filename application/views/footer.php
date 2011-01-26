@@ -1,7 +1,7 @@
 		<div id="footer">
 			<p>
 				&copy; Copyright 2011. C&oacute;digo y dise&ntilde;o hecho por @demogar en @pixmat. Made in Panama, &iexcl;carajo!.<br />
-				C&oacute;digo liberado en <a href="" target="_blank" title="Repositorio en Git">GitHub</a> y <a href="https://bitbucket.org/demogar/beispanama" target="_blank" title="Repositorio en Mercurial">Bitbucket</a> bajo licencia <a href="http://sam.zoy.org/wtfpl/" target="_blank" title="WTFPL - Do What The Fuck You Want To Public License">WTFPL</a>.
+				C&oacute;digo liberado en <a href="http://github.com/demogar/beispanama" target="_blank" title="Repositorio en Git">GitHub</a> y <a href="https://bitbucket.org/demogar/beispanama" target="_blank" title="Repositorio en Mercurial">Bitbucket</a> bajo licencia <a href="http://sam.zoy.org/wtfpl/" target="_blank" title="WTFPL - Do What The Fuck You Want To Public License">WTFPL</a>.
 			</p>
 		</div><!--#footer-->
 		
