@@ -8,7 +8,7 @@
 		</ul>
 		<h4>&iquest;Qu&eacute; hace?</h4>
 		<ul>
-			<li>Le agrega el log de tu equipo favorito a tu avatar en Twitter.</li>
+			<li>Le agrega el logo de tu equipo favorito a tu avatar en Twitter.</li>
 			<li>Si lo deseas, proclama tu pasi&oacute;n por tu equipo favorito por medio de un mensaje de Twitter.</li>
 			<li>Profit!</li>
 		</ul>
