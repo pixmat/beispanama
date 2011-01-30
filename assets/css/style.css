@@ -3,7 +3,12 @@ a:link, a:visited, a:active{color:#202122}
 	a:hover{color:#1a83bc}
 small{font-size:80%;}
 
+.clearfix:before,.clearfix:after{content:'\0020';display:block;overflow:hidden;visibility:hidden;width:0;height:0}.clearfix:after{clear:both}.clearfix{zoom:1}
+.float-left{float:left;}
+.float-right{float:right;}
+
 /* Header */
+div#header{width:1000px;}
 h1{background:transparent url(../images/logo.png) no-repeat;width:438px;height:92px;overflow:hidden}
 	h1 span{display:none;}
 
@@ -16,3 +21,6 @@ div#avatarSelector{width:73px;height:73px;margin:0 0 20px;padding:0;position:rel
 
 /* Footer */
 div#footer{font-size:90%;margin-top:30px}
+
+div#footer div.like-box{margin-bottom:20px;}
+	div#footer div.like-box p{margin:0}
