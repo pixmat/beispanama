@@ -2,7 +2,7 @@
 			<div class="like-box">
 				<p><a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.beispanama.com" data-text="Yo apoyo a mi equipo favorito del béisbol panameño" data-count="horizontal" data-via="pixmat" data-lang="es">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></p>
 				
-				<p><fb:like href="http://www.beispanama.com" show_faces="true" width="450" font="arial"></fb:like></p>
+				<p><fb:like href="http://www.beispanama.com" show_faces="false" width="450" font="arial"></fb:like></p>
 			</div><!--.like-box-->
 			
 			<p>
