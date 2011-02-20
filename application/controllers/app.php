@@ -20,6 +20,9 @@ class App extends CI_Controller {
 		parent::__construct();
 		
 		$this->load->library("twitter");
+		
+		// Allow GET parameters, disabled by default
+		parse_str($_SERVER['QUERY_STRING'], $_GET);
 	}
 	
 	/**
@@ -57,7 +60,7 @@ class App extends CI_Controller {
 			
 			// Footer
 			$this->load->view("footer");
-		} elseif (isset($_GET['oauth_verifier'])) { // <- Coming from Twitter
+		} elseif ( isset($_GET['oauth_verifier']) ) { // <- Coming from Twitter
 			$this->twitter->getAccessToken($_GET['oauth_verifier']);
 			header("Location: {$here}");
 		} elseif ( $sigin != NULL ) { // <- Tryinig to log in
