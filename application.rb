@@ -22,13 +22,14 @@ class App < Sinatra::Base
   # Helpers
   helpers do
     def current_user
-      !session[:uid].nil?
+      # Enforce user is logged in, and we have real data
+      !session[:uid].nil? && !session[:nickname].nil?
     end
   end
 
   # Enforce Auth
   before do
-    pass if request.path_info =~ /^\/auth\// || request.path_info == '/'
+    pass if request.path_info =~ /^\/auth\// || request.path_info == '/' || request.path_info == '/logout'
     redirect to '/auth/twitter' unless current_user
   end
 
@@ -39,6 +40,11 @@ class App < Sinatra::Base
     @keywords     = 'beisbol-panama,baseball-panama,beis-panama,twitter-panama,deportes-panama'
 
     erb :home
+  end
+
+  get '/logout' do
+    session.clear
+    redirect to '/'
   end
 
   get '/process' do
