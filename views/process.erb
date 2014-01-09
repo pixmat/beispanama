@@ -1,0 +1,51 @@
+<div id="content" class="clearfix">
+  <div id="formApp">
+    <h4>Hola, @<%= @usr[:nickname] %>.</h4>
+    <p><% # echo anchor("app/logout", "Quiero desloguearme &raquo;"); %></p>
+    
+    <p>Si quieres apoyar a tu equipo favorito de béisbol nacional de Panamá tu cuenta de Twitter es muy fácil: Escoge tu equipo favorito del béisbol nacional, mira como quedaría con tu profile picture actual y ¡listo!.</p>
+    
+    <div id="formChangeAvatar">
+      <form action="" method="post">
+        <h5>Paso 1: Selecciona tu equipo favorito</h5>
+        <p>
+          Yo soy fan de:
+          <select name="equipo">
+            <% @flags.each do |key, val| %>
+            <option value="<%= key %>"><%= val %></option>
+            <% end %>
+          </select>
+        </p>
+        
+        <hr>
+        
+        <h5>Paso 2: Mira como quedaría tu Avatar</h5>
+        <div id="avatarSelector">
+          <img src="<%= @usr[:image] %>" alt="" />
+          <img class="logoEquipo" src="/flags/bocas.png" alt="" />
+        </div><!--#avatarSelector -->
+        
+        <hr>
+        
+        <h5>Paso 3: Quieres seguir a los creadores? Somos algo <em>geeks</em>, pero no mordemos</h5>
+        <p>
+          <input type="checkbox" name="follow" value="yes" checked="checked" />
+          <label for="follow">Quiéres seguir a <a href="https://twitter.com/intent/user?screen_name=pixmat">@pixmat</a> en Twitter?</label>
+        </p>
+        <p>
+          <input type="checkbox" name="send_tweet" value="yes" checked="checked" />
+          <label for="send_tweet">Quiéres enviar un tweet para que otros muestren el fervor por tu equipo?</label>
+        </p>
+        
+        <hr>
+        
+        <h5>Paso 4: Cambia tu Avatar</h5>
+        <button>Cambiar avatar</button>
+
+        <hr>
+
+        <p><small><strong>NOTA:</strong> ningún dato es guardado en nuestro sistema. Recuerda sacar un respaldo de tu imagen actual, ya que la sobreescribiremos.</small></p>
+      </form>
+    </div><!--#formChangeAvatar-->
+  </div>
+</div><!--#content-->
