@@ -1,8 +1,23 @@
 # encoding: utf-8
+require 'rubygems'
+require 'bundler'
+
+Bundler.require
 
 class App < Sinatra::Base
-  # Session support
-  enable :sessions
+  configure do
+    # Sinatra configuration and settings
+    register Sinatra::ConfigFile
+    config_file 'config/settings.yml'
+
+    # Session support
+    enable :sessions
+
+    use OmniAuth::Builder do
+      settings = App.settings
+      provider :twitter, settings.consumer_key, settings.consumer_secret
+    end
+  end
 
   # Helpers
   helpers do
@@ -13,8 +28,7 @@ class App < Sinatra::Base
 
   # Enforce Auth
   before do
-    pass if request.path_info =~ /^\/auth\//
-
+    pass if request.path_info =~ /^\/auth\// || request.path_info == '/'
     redirect to '/auth/twitter' unless current_user
   end
 
@@ -33,46 +47,63 @@ class App < Sinatra::Base
 
     # Flags
     @flags = {
-      "bocas"        => "Bocas Del Toro",
-      "cocle"        => "Coclé",
-      "colon"        => "Colón",
-      "chiriqui"     => "Chiriquí",
-      "occidente"    => "Chiriquí Occidente",
-      "darien"       => "Darién",
-      "herrera"      => "Herrera",
-      "los_santos"   => "Los Santos",
-      "metro"        => "Panamá Metro",
-      "oeste"        => "Panamá Oeste",
-      "veraguas"     => "Veraguas"
+      'bocas'        => 'Bocas Del Toro',
+      'cocle'        => 'Coclé',
+      'colon'        => 'Colón',
+      'chiriqui'     => 'Chiriquí',
+      'occidente'    => 'Chiriquí Occidente',
+      'darien'       => 'Darién',
+      'herrera'      => 'Herrera',
+      'los_santos'   => 'Los Santos',
+      'metro'        => 'Panamá Metro',
+      'oeste'        => 'Panamá Oeste',
+      'veraguas'     => 'Veraguas'
     }
 
     # Meta
-    @title        = "Beispanama — Cambia tu avatar"
-    @description  = "Cambia tu avatar de Twitter, usando la bandera de tu equipo favorito del béisbol nacional de Panamá"
-    @keywords     = "beisbol-panama,baseball-panama,beis-panama,twitter-panama,deportes-panama"
+    @title        = 'Beispanama — Cambia tu avatar'
+    @description  = 'Cambia tu avatar de Twitter, usando la bandera de tu equipo favorito del béisbol nacional de Panamá'
+    @keywords     = 'beisbol-panama,baseball-panama,beis-panama,twitter-panama,deportes-panama'
 
     erb :process
   end
 
   post '/process' do
     # Configure REST Twitter Client
-    # client = Twitter::REST::Client.new do |config|
-    #   config.consumer_key        = settings.consumer_key
-    #   config.consumer_secret     = settings.consumer_secret
-    #   config.access_token        = session[:token]
-    #   config.access_token_secret = session[:secret]
-    # end
+    client = Twitter::REST::Client.new do |config|
+      config.consumer_key        = settings.consumer_key
+      config.consumer_secret     = settings.consumer_secret
+      config.access_token        = session[:token]
+      config.access_token_secret = session[:secret]
+    end
 
     # Prepare avatar
     image = MiniMagick::Image.open(session[:image])
     result = image.composite(MiniMagick::Image.open("public/flags/#{params[:equipo]}.png", "png")) do |c|
-      c.gravity "southwest"
+      c.gravity 'southwest'
     end
     avatar_path = "avatars/#{session[:nickname]}.png"
     result.write avatar_path
 
     # Update avatar on Twitter
-    # client.update_profile_image(avatar_path)
+    client.update_profile_image(File.open(avatar_path))
+
+    # Send message
+    if params[:send_tweet] && params[:send_tweet] === 'yes'
+      client.update 'Yo apoyo a mi equipo favorito de beis en Panamá usando http://www.beispanama.com por @pixmat. #BeisPanama'
+    end
+
+    # Follow pixmat :)
+    if params[:follow] && params[:follow] === 'yes'
+      client.follow 'pixmat'
+    end
+
+    #
+    @title        = 'Beispanama — Avatar cambiado!'
+    @description  = ''
+    @keywords     = ''
+
+    erb :done
   end
 
   get '/auth/twitter/callback' do
@@ -87,9 +118,6 @@ class App < Sinatra::Base
   end
 
   get '/auth/failure' do
-  end
-
-  use OmniAuth::Builder do
-    provider :twitter, settings.consumer_key, settings.consumer_secret
+    erb :error
   end
 end
